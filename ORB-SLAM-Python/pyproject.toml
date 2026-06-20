@@ -1,0 +1,65 @@
+[build-system]
+requires = ["scikit_build_core", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "orb_slam3"
+version = "0.0.1"
+description = "ORB SLAM3 with python interfacing"
+readme = "README.md"
+authors = [
+    { name = "Sumanth Nagulavancha", email = "sumanthrao1997@gmail.com" },
+]
+requires-python = ">=3.7"
+keywords = [
+    "ORB",
+    "Camera",
+    "Odometry",
+    "SLAM",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Other Audience",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    # "Operating System :: Microsoft :: Windows",
+    "Operating System :: Unix",
+    "Programming Language :: C++",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "argh",
+    "numpy",
+    "opencv-python",
+    "pathlib",
+    "pooch",
+    "pyquaternion",
+    "tqdm",
+]
+
+
+[tool.scikit-build]
+build-dir = "build/{wheel_tag}"
+cmake.verbose = false
+cmake.args = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]
+cmake.minimum-version = "3.25"
+editable.mode = "redirect"
+editable.rebuild = true
+editable.verbose = true
+wheel.install-dir = "orb_slam3/python_wrapper"
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.format]
+max-line-length = "100"
